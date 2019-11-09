@@ -48,5 +48,6 @@ Things you may want to cover:
 * Future Improvements
   1. click on a work order and edit (including delete) it
   2. click on a gap and add a work order to it
-  3. drag and drop work orders across technicians and timeslots
-  4. drap mouse to create work order across the dragged timeframe
+  3. change day viewed
+  4. drag and drop work orders across technicians and timeslots
+  5. drap mouse to create work order across the dragged timeframe
