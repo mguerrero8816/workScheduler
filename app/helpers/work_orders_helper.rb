@@ -35,7 +35,7 @@ module WorkOrdersHelper
 
   def build_wo_technician_col(technician_id, work_orders)
     content_tag(:div, style: 'display:inline-block;vertical-align:top') do
-      concat(content_tag(:div, technician_id, style: "#{GENERAL_CELL_STYLE};height:#{(60 * MIN_TO_PX)-1}px;"))
+      concat(content_tag(:div, work_orders.first.technician_name, style: "#{GENERAL_CELL_STYLE};height:#{(60 * MIN_TO_PX)-1}px;"))
       # set current time to beginning_of_day
       current_time_min = 0
       # set offset for overlapping work orders
@@ -62,8 +62,8 @@ module WorkOrdersHelper
           cell_style << "border-top-width:1px"
         end
         concat(content_tag(:div, style: cell_style) do
-          concat(content_tag(:div, work_order.time.strftime('%l:%M:%S %P')))
-          concat(content_tag(:div, work_order.duration))
+          concat(content_tag(:div, "#{work_order.location_name}, #{work_order.location_city}"))
+          concat(content_tag(:div, "$#{work_order.price}, #{work_order.time.strftime('%l:%M:%S %P')}"))
         end)
         # set current time to end of work order
         current_time_min = wo_time_min + work_order.duration
