@@ -8,5 +8,13 @@
       gapMessage = "Hours: " + $(this).data("hours") + " Minutes: " + $(this).data("minutes")
       alert(gapMessage)
     })
+    $(".first-wo-gap").click(function(){
+      gapMessage = "No previous work order."
+      alert(gapMessage)
+    })
+    $(".last-wo-gap").click(function(){
+      gapMessage = "No following work order."
+      alert(gapMessage)
+    })
   })
 </script>

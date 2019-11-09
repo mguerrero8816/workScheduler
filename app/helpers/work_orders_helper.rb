@@ -57,9 +57,15 @@ module WorkOrdersHelper
         if gap_height < 0
           total_overlap_offset += gap_height
         end
+        # first gap should have different class for different messsage
+        if current_time_min == 0
+          gap_class = 'first-wo-gap'
+        else
+          gap_class = 'wo-gap'
+        end
         # only add gap if it present
         if gap_height > 0
-          concat(content_tag(:div, nil, class: 'wo-gap', data: { hours: time_difference_min/60, minutes: time_difference_min%60 }, style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;cursor:pointer;"))
+          concat(content_tag(:div, nil, class: gap_class, data: { hours: time_difference_min/60, minutes: time_difference_min%60 }, style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;cursor:pointer;"))
         end
         height = work_order.duration * MIN_TO_PX
         #remove px for border
@@ -81,7 +87,7 @@ module WorkOrdersHelper
       gap_height = time_difference_min * MIN_TO_PX
       # remove px for border
       gap_height -= 1
-      concat(content_tag(:div, nil, class: 'wo-gap', data: { hours: time_difference_min/60, minutes: time_difference_min%60 }, style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;cursor:pointer;"))
+      concat(content_tag(:div, nil, class: 'last-wo-gap', data: { hours: time_difference_min/60, minutes: time_difference_min%60 }, style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;cursor:pointer;"))
     end
   end
 end
