@@ -33,6 +33,7 @@ Things you may want to cover:
   My plan of action was to build the application from the backend to the frontend
   1. the database tables and models were created in order to establish the relationships between the models
   2. the rake task to populate the database was created so there would be data to use in the view
+     2a. the bulk of the logic for the rake task was written in a service class for easy access in rails console
   3. the grid was built using divs in order to overcome the restrictions associated with using tables
   4. the height of each div would be determined by how many minutes were accounted for in the specific segment of the column
      4a. the pixel width of the borders for each cell needed to be taken into account to get heights that would match each column
