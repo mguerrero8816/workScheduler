@@ -58,7 +58,7 @@ module WorkOrdersHelper
         end
         # only add gap if it present
         if gap_height > 0
-          concat(content_tag(:div, nil, style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;"))
+          concat(content_tag(:div, nil, class: 'wo_gap', style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;cursor:pointer;"))
         end
         height = work_order.duration * MIN_TO_PX
         #remove px for border
@@ -79,7 +79,7 @@ module WorkOrdersHelper
       gap_height = ((24*60) - current_time_min) * MIN_TO_PX
       # remove px for border
       gap_height -= 1
-      concat(content_tag(:div, nil, style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px"))
+      concat(content_tag(:div, nil, class: 'wo_gap', style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;cursor:pointer;"))
     end
   end
 end
