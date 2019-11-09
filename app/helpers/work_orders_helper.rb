@@ -9,7 +9,14 @@ module WorkOrdersHelper
     content_tag(:div, style: 'display:inline-block;vertical-align:top') do
       concat(content_tag(:div, 'Time', style: "#{GENERAL_CELL_STYLE};height:#{height}px;"))
       24.times do |i|
-        concat(content_tag(:div, "#{i}:00", style: "#{GENERAL_CELL_STYLE};height:#{height}px;"))
+        meridian_hour = i%12
+        if meridian_hour == 0
+          time_string = '12:00 '
+        else
+          time_string = "#{meridian_hour}:00 "
+        end
+        time_string << (i < 12 ? 'am' : 'pm')
+        concat(content_tag(:div, time_string, style: "#{GENERAL_CELL_STYLE};height:#{height}px;"))
       end
     end
   end
