@@ -49,7 +49,8 @@ module WorkOrdersHelper
       total_overlap_offset = 0
       work_orders.each do |work_order|
         wo_time_min = (work_order.time.hour * 60) + work_order.time.min
-        gap_height = (wo_time_min - current_time_min) * MIN_TO_PX
+        time_difference_min = wo_time_min - current_time_min
+        gap_height = time_difference_min * MIN_TO_PX
         #remove px for border
         gap_height -= 1
         # add negative top positioning if overlapping
@@ -58,7 +59,7 @@ module WorkOrdersHelper
         end
         # only add gap if it present
         if gap_height > 0
-          concat(content_tag(:div, nil, class: 'wo_gap', style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;cursor:pointer;"))
+          concat(content_tag(:div, nil, class: 'wo-gap', data: { hours: time_difference_min/60, minutes: time_difference_min%60 }, style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;cursor:pointer;"))
         end
         height = work_order.duration * MIN_TO_PX
         #remove px for border
@@ -76,10 +77,11 @@ module WorkOrdersHelper
         current_time_min = wo_time_min + work_order.duration
       end
       # build gap for end of day
-      gap_height = ((24*60) - current_time_min) * MIN_TO_PX
+      time_difference_min = (24*60) - current_time_min
+      gap_height = time_difference_min * MIN_TO_PX
       # remove px for border
       gap_height -= 1
-      concat(content_tag(:div, nil, class: 'wo_gap', style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;cursor:pointer;"))
+      concat(content_tag(:div, nil, class: 'wo-gap', data: { hours: time_difference_min/60, minutes: time_difference_min%60 }, style: "#{GENERAL_CELL_STYLE};height:#{gap_height}px;position:relative;top:#{total_overlap_offset}px;cursor:pointer;"))
     end
   end
 end

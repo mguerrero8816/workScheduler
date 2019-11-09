@@ -3,5 +3,10 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
+    var gapMessage
+    $(".wo-gap").click(function(){
+      gapMessage = "Hours: " + $(this).data("hours") + " Minutes: " + $(this).data("minutes")
+      alert(gapMessage)
+    })
   })
 </script>
