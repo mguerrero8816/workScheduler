@@ -26,6 +26,8 @@ rails webpacker:install
 rake db:create
 
 * Database initialization
+rake db:migrate
+rake csv_data:record
 
 * How to run the test suite
 
