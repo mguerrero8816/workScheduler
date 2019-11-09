@@ -1,6 +1,6 @@
-class PopulateLocations
+class CsvDataRecorder
   class << self
-    def call(data_type='Location', filename='public/locations.csv')
+    def call(data_type, filename)
       ActiveRecord::Base.connection
       data_class = data_type.safe_constantize
       # only store data if correct type is passed
