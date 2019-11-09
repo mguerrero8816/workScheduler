@@ -71,9 +71,9 @@ module WorkOrdersHelper
         #remove px for border
         height -= 1
         cell_style = "#{GENERAL_CELL_STYLE};height:#{height}px;position:relative;top:#{total_overlap_offset}px;"
-        # add top border if current cell is overlapping
+        # add top border and alert color if current cell is overlapping
         if gap_height < 0
-          cell_style << "border-top-width:1px"
+          cell_style << "border-top-width:1px;background-color:red;"
         end
         concat(content_tag(:div, style: cell_style) do
           concat(content_tag(:div, "#{work_order.location_name}, #{work_order.location_city}"))
