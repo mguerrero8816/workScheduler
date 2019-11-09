@@ -7,7 +7,7 @@ class CsvDataRecorder
       if data_class.present?
         file_string = File.read(filename)
         file_rows = file_string.split("\r\n")
-        object_keys = file_rows.first.gsub(/[^0-9A-Za-z,]/, '').split(',')
+        object_keys = file_rows.first.gsub(/[^0-9A-Za-z,_]/, '').split(',')
         file_rows.drop(1).each do |object_values|
           new_object = data_class.new
           object_values.split(',').each_with_index do |val, i|
