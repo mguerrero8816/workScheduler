@@ -11,7 +11,18 @@ class CsvDataRecorder
         file_rows.drop(1).each do |object_values|
           new_object = data_class.new
           object_values.split(',').each_with_index do |val, i|
-            new_object[object_keys[i].to_sym] = val
+            key_to_save = object_keys[i]
+            if data_type == 'WorkOrder' && key_to_save == 'time'
+              month = val.split('/').first.to_i
+              day = val.split('/')[1].to_i
+              year = val.split('/').last.split(' ').first.to_i + 2000
+              hour = val.split(' ').last.split(':').first.to_i
+              minute = val.split(':').last.to_i
+              val_to_save = Time.zone.local(year, month, day, hour, minute, 0)
+            else
+              val_to_save = val
+            end
+            new_object[key_to_save] = val_to_save
           end
           begin
             new_object.save
