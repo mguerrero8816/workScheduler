@@ -7,7 +7,7 @@ module WorkOrdersHelper
     # remove px for border
     height -= 1
     content_tag(:div, style: 'display:inline-block;vertical-align:top') do
-      concat(content_tag(:div, 'Time', style: "#{GENERAL_CELL_STYLE};height:#{height}px;"))
+      concat(content_tag(:div, 'Time', style: "#{GENERAL_CELL_STYLE};height:#{height}px;border-top:1px solid black"))
       24.times do |i|
         meridian_hour = i%12
         if meridian_hour == 0
@@ -42,7 +42,7 @@ module WorkOrdersHelper
 
   def build_wo_technician_col(technician_id, work_orders)
     content_tag(:div, style: 'display:inline-block;vertical-align:top') do
-      concat(content_tag(:div, work_orders.first.technician_name, style: "#{GENERAL_CELL_STYLE};height:#{(60 * MIN_TO_PX)-1}px;"))
+      concat(content_tag(:div, work_orders.first.technician_name, style: "#{GENERAL_CELL_STYLE};height:#{(60 * MIN_TO_PX)-1}px;border-top:1px solid black"))
       # set current time to beginning_of_day
       current_time_min = 0
       # set offset for overlapping work orders
