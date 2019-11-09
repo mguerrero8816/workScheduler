@@ -13,7 +13,10 @@ class PopulateLocations
           object_values.split(',').each_with_index do |val, i|
             new_object[object_keys[i].to_sym] = val
           end
-          new_object.save
+          begin
+            new_object.save
+          rescue ActiveRecord::RecordNotUnique
+          end
         end
       end
     end
